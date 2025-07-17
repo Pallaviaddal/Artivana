@@ -37,7 +37,7 @@ function Header() {
 
         {/* Mobile Menu Toggle */}
         <div className="xl:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="text-black cursor-pointer">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="text-white cursor-pointer">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
