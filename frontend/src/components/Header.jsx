@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../utils/getUser";
 import { Menu, X, ShoppingCart } from "lucide-react";
-import { motion } from "framer-motion";
 
 function Header() {
   const user = getCurrentUser();
   const isAdmin = user?.isAdmin;
-  console.log("User object from localStorage:", user);
-
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -19,115 +16,88 @@ function Header() {
   };
 
   return (
-    <header className="relative w-full  bg-gray-900 py-3 px-4 shadow-xl backdrop-blur-lg">
+    <header className="bg-gray-900 py-3 px-4 shadow-xl w-full">
       <div className="flex justify-between items-center">
-        {/* Logo and Welcome */}
-        <div className="flex items-center w-full">
-          <Link to="/" className="flex items-center">
-            <img src="logo.png" alt="Logo" className="object-contain" width={'60px'} />
-          </Link>
-          {user && (
-            <div className="xl:m-auto w-[100%] xl:pt-1 xl:ps-82 flex justify-center items-center">
-              <span className="text-xl font-semibold text-white text-center xl:pe-0 text-animation">
-                👋 Welcome, <span className="text-red-500">{user.name}</span>
-              </span>
-            </div>
-          )}
-        </div>
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/logo.png" alt="Artivana Logo" width="50" className="object-contain" />
+          <span className="text-white font-bold text-xl hidden sm:inline">Artivana</span>
+        </Link>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile menu icon */}
         <div className="xl:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="text-white cursor-pointer">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="text-white">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Desktop Navigation */}
-        {user ? (
-          <div className="hidden xl:flex xl:w-full xl:m-auto justify-end items-center gap-5">
-            <Link to="/" className="text-white text-center">Home</Link>
-            <Link to="/blogs" className="text-white text-center">Blog</Link>
-            <Link to="/contact" className="text-white text-center">Contact Us</Link>
-            <Link to="/about" className="text-white text-center">About Us</Link>
+        {/* Desktop navigation */}
+        <div className="hidden xl:flex gap-6 items-center">
+          <Link to="/" className="text-white">Home</Link>
+          <Link to="/blogs" className="text-white">Blog</Link>
+          <Link to="/contact" className="text-white">Contact Us</Link>
+          <Link to="/about" className="text-white">About Us</Link>
 
-            {isAdmin && (
-              <Link
-                to="/admin-dashboard"
-                className="text-sm text-red-600 border font-bold flex gap-1 border-red-600 hover:bg-red-600 hover:text-white px-2 py-1 rounded  text-center"
-              >
-                Admin Panel
-              </Link>
-            )}
-            <Link
-              to="/cart"
-              className="text-sm font-bold flex gap-1 text-green-600 items-center border px-2 py-1 hover:bg-green-600 hover:text-white rounded border-green-600 text-center"
-              onClick={() => setMenuOpen(false)}
-            >
-              <ShoppingCart className="p-1" /> Cart
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="text-sm text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-3 py-1 rounded"
-            >
-              Logout
-            </button>
-          </div>
-        ) : (
-          <div className="hidden xl:flex items-center gap-4">
-            <Link to="/login" className="text-white">Login</Link>
-            <Link to="/register" className="text-white">Register</Link>
-          </div>
-        )}
-      </div>
-
-      {/* Mobile Navigation */}
-      {menuOpen && (
-        <div className="xl:hidden mt-3 flex flex-col gap-3">
           {user ? (
             <>
-              <Link to="/blogs" className="text-white text-center px-3 py-1" onClick={() => setMenuOpen(false)}>Blog</Link>
-              <Link to="/contact" className="text-white text-center" onClick={() => setMenuOpen(false)}>Contact Us</Link>
-              <Link to="/about" className="text-white text-center" onClick={() => setMenuOpen(false)}>About Us</Link>
-              <div className="flex justify-center">
-                {isAdmin && (
-                  <Link
-                    to="/admin-dashboard"
-                    className="text-sm font-bold flex gap-1 text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-2 py-1 rounded text-center"
-                  onClick={() => setMenuOpen(false)}>
-                    Admin Panel
-                  </Link>
-                )}
-              </div>
-              <div className="flex justify-center">
-                  
-                <Link
-                  to="/cart"
-                  className="text-sm font-bold flex gap-1 text-green-600 items-center border px-2 py-1 hover:bg-green-600 hover:text-white rounded border-green-600 text-center"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <ShoppingCart className="p-1" /> Cart
+              {isAdmin && (
+                <Link to="/admin-dashboard" className="text-sm text-red-600 border font-bold border-red-600 hover:bg-red-600 hover:text-white px-2 py-1 rounded">
+                  Admin Panel
                 </Link>
-              </div>
-              <div className="flex justify-center">
-                <button
-                  onClick={() => {
-                    setMenuOpen(false);
-                    handleLogout();
-                  }}
-                  className="text-sm text-red-600 border font-bold border-red-600 hover:bg-red-600 hover:text-white px-3 py-1 rounded"
-                >
-                  Logout
-                </button>
-              </div>
+              )}
+              <Link to="/cart" className="text-sm font-bold flex gap-1 text-green-600 items-center border px-2 py-1 hover:bg-green-600 hover:text-white rounded border-green-600">
+                <ShoppingCart size={18} /> Cart
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-sm text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-3 py-1 rounded"
+              >
+                Logout
+              </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="text-white text-center" onClick={() => setMenuOpen(false)}>
-                Login
+              <div>
+              <Link to="/login" className="text-white border border-red-600 px-3 py-1 rounded hover:bg-red-600" onClick={() => setMenuOpen(false)}>Login</Link>
+              </div>
+              <div>
+              <Link to="/register" className="text-white border border-green-600 px-3 py-1 rounded hover:bg-green-600" onClick={() => setMenuOpen(false)}>Register</Link>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="xl:hidden mt-3 flex flex-col gap-4">
+          <Link to="/" className="text-white" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/blogs" className="text-white" onClick={() => setMenuOpen(false)}>Blog</Link>
+          <Link to="/contact" className="text-white" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+          <Link to="/about" className="text-white" onClick={() => setMenuOpen(false)}>About Us</Link>
+
+          {user ? (
+            <>
+              {isAdmin && (
+                <Link to="/admin-dashboard" className="text-red-600 border border-red-600 font-bold px-2 py-1 rounded text-center" onClick={() => setMenuOpen(false)}>
+                  Admin Panel
+                </Link>
+              )}
+              <Link to="/cart" className="text-green-600 border border-green-600 px-2 py-1 rounded text-center" onClick={() => setMenuOpen(false)}>
+                <ShoppingCart size={18} className="inline" /> Cart
               </Link>
-              <Link to="/register" className="text-white text-center" onClick={() => setMenuOpen(false)}>
-                Register
-              </Link>
+              <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="text-red-600 border border-red-600 px-3 py-1 rounded">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <div>
+              <Link to="/login" className="text-white border border-red-600 px-3 py-1 rounded" onClick={() => setMenuOpen(false)}>Login</Link>
+              </div>
+              <div>
+              <Link to="/register" className="text-white border border-red-600 px-3 py-1 rounded" onClick={() => setMenuOpen(false)}>Register</Link>
+              </div>
             </>
           )}
         </div>

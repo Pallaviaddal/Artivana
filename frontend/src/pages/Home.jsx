@@ -234,8 +234,8 @@ function Home() {
           </div>
         )}
 
-        <ToastContainer position="top-center" autoClose={2000} />
       </div>
+      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 }

@@ -1,19 +1,32 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Contact() {
   const form = useRef();
   const [status, setStatus] = useState("");
+  const navigate = useNavigate();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
+    // ✅ Check login status on form submit
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+      toast.error("Please login to send your message.");
+      navigate("/login"); // Redirect to login page
+      return;
+    }
+
     emailjs
       .sendForm(
-        "service_s6xsdvb",     // replace with your actual EmailJS service ID
-        "template_jnva8vv",    // replace with your actual EmailJS template ID
+        "service_s6xsdvb",     // your EmailJS service ID
+        "template_jnva8vv",    // your EmailJS template ID
         form.current,
-        "Afksm-GS687Pt_v1k"      // replace with your EmailJS public key
+        "Afksm-GS687Pt_v1k"    // your EmailJS public key
       )
       .then(
         (result) => {
@@ -35,7 +48,7 @@ function Contact() {
       </h1>
 
       <p className="text-gray-100 text-center mb-10 text-md">
-        Have questions or feedback? We’d love to hear from you. Fill out the form below and we'll get back to you soon.
+        Have questions or feedback? Fill out the form below and we'll get back to you soon.
       </p>
 
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
@@ -94,6 +107,7 @@ function Contact() {
           pallaviphotos3@gmail.com
         </a>
       </div>
+      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 }
