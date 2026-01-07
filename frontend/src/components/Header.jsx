@@ -19,8 +19,8 @@ function Header() {
     <header className="text-black py-3 px-4 shadow-xl w-full">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-5">
-          <img src="/logo.png" alt="Artivana Logo" width="70" className="object-contain" />
+        <Link to="/" className="flex items-center">
+          <img src="/logo.png" alt="Artivana Logo"  className="object-contain w-50" />
          
         </Link>
 
