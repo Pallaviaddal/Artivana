@@ -20,7 +20,7 @@ function Header() {
       <div className="flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img src="/logo.png" alt="Artivana Logo"  className="object-contain w-40" />
+          <img src="/logo.png" alt="Artivana Logo" width = '50' className="object-contain  />
          
         </Link>
 
