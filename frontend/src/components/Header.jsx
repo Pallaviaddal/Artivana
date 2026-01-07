@@ -19,24 +19,24 @@ function Header() {
     <header className="text-black py-3 px-4 shadow-xl w-full">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt="Artivana Logo" width="50" className="object-contain" />
-          <span className="text-white font-bold text-xl hidden sm:inline">Artivana</span>
+        <Link to="/" className="flex items-center gap-5">
+          <img src="/logo.png" alt="Artivana Logo" width="70" className="object-contain" />
+         
         </Link>
 
         {/* Mobile menu icon */}
         <div className="xl:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="text-black">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Desktop navigation */}
         <div className="hidden xl:flex gap-6 items-center">
-          <Link to="/" className="">Home</Link>
-          <Link to="/blogs" className="">Blog</Link>
-          <Link to="/contact" className="">Contact Us</Link>
-          <Link to="/about" className="">About Us</Link>
+          <Link to="/" className="text-black">Home</Link>
+          <Link to="/blogs" className="text-black">Blog</Link>
+          <Link to="/contact" className="text-black">Contact Us</Link>
+          <Link to="/about" className="text-black">About Us</Link>
 
           {user ? (
             <>
