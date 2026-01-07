@@ -26,17 +26,17 @@ function Header() {
 
         {/* Mobile menu icon */}
         <div className="xl:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="text-white">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Desktop navigation */}
         <div className="hidden xl:flex gap-6 items-center">
-          <Link to="/" className="text-white">Home</Link>
-          <Link to="/blogs" className="text-white">Blog</Link>
-          <Link to="/contact" className="text-white">Contact Us</Link>
-          <Link to="/about" className="text-white">About Us</Link>
+          <Link to="/" className="">Home</Link>
+          <Link to="/blogs" className="">Blog</Link>
+          <Link to="/contact" className="">Contact Us</Link>
+          <Link to="/about" className="">About Us</Link>
 
           {user ? (
             <>
