@@ -16,7 +16,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-gray-900 py-3 px-4 shadow-xl w-full">
+    <header className="text-black py-3 px-4 shadow-xl w-full">
       <div className="flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
