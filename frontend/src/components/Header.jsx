@@ -20,7 +20,7 @@ function Header() {
       <div className="flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img src="/logo.png" alt="Artivana Logo" width = '60' className="object-contain px-10"  />
+          <img src="/logo.png" alt="Artivana Logo" width = '60' className="object-contain lg:mx-10"  />
          
         </Link>
 
@@ -71,10 +71,10 @@ function Header() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="xl:hidden mt-3 flex flex-col gap-4">
-          <Link to="/" className="text-white" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/blogs" className="text-white" onClick={() => setMenuOpen(false)}>Blog</Link>
-          <Link to="/contact" className="text-white" onClick={() => setMenuOpen(false)}>Contact Us</Link>
-          <Link to="/about" className="text-white" onClick={() => setMenuOpen(false)}>About Us</Link>
+          <Link to="/" className="text-black" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/blogs" className="text-black" onClick={() => setMenuOpen(false)}>Blog</Link>
+          <Link to="/contact" className="text-black" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+          <Link to="/about" className="text-black" onClick={() => setMenuOpen(false)}>About Us</Link>
 
           {user ? (
             <>
@@ -93,10 +93,10 @@ function Header() {
           ) : (
             <>
               <div>
-              <Link to="/login" className="text-white border border-red-600 px-3 py-1 rounded" onClick={() => setMenuOpen(false)}>Login</Link>
+              <Link to="/login" className="text-black border border-red-600 px-3 py-1 rounded" onClick={() => setMenuOpen(false)}>Login</Link>
               </div>
               <div>
-              <Link to="/register" className="text-white border border-red-600 px-3 py-1 rounded" onClick={() => setMenuOpen(false)}>Register</Link>
+              <Link to="/register" className="text-black border border-red-600 px-3 py-1 rounded" onClick={() => setMenuOpen(false)}>Register</Link>
               </div>
             </>
           )}
